@@ -1,5 +1,3 @@
-// TODO закончил на React.propTypes
-
 var newsList = [
   {
     author: 'Саша Печкин',
