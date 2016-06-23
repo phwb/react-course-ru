@@ -103,11 +103,11 @@ var Add = React.createClass({
     var author = ReactDOM.findDOMNode(this.refs.author).value;
     var text = ReactDOM.findDOMNode(this.refs.text).value;
 
-    let item = [{
+    let item = {
       author: author,
       text: text,
       bigText: '...'
-    }];
+    };
     ee.emit('news.add', item);
   },
 
@@ -180,10 +180,11 @@ var App = React.createClass({
   },
 
   componentDidMount: function () {
-    ee.addListener('news.add', item => this.setState({
-      news: item.concat(this.state.news)
-      // news: [...item, this.state.news]
-    }, null));
+    ee.addListener('news.add', item => {
+      this.setState({
+        news: [item, ...this.state.news]
+      }, null)
+    });
   },
 
   componentWillUnmount: function () {
